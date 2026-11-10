@@ -1,0 +1,13 @@
+<nav id="nav" [class.scrolled]="scrolled()">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Back to top" (click)="go($event, 'top')"><i></i>gowri.dev</a>
+    <div class="links">
+      @for (link of links; track link.id) {
+        <a [href]="'#' + link.id" [class.keep]="link.id === 'contact'" [class.on]="active() === link.id" (click)="go($event, link.id)">{{ link.label }}</a>
+      }
+      <button class="icon-btn" type="button" aria-label="Switch colour theme" (click)="theme.toggle()">
+        <app-icon name="moon" [stroke]="2" />
+      </button>
+    </div>
+  </div>
+</nav>

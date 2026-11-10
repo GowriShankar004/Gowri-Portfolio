@@ -1,0 +1,22 @@
+/* ask-me chat */
+.chat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:24px}
+@media (max-width:860px){.chat{grid-template-columns:minmax(0,1fr)}}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-content:start}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.stat .n{font:800 clamp(34px,4vw,46px)/1 var(--f-display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat .n sup{font-size:.45em;color:var(--mint);vertical-align:super;margin-left:2px}
+.stat .l{color:var(--muted);font-size:14px;margin-top:8px}
+.window{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.window .bar{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);font:500 12px/1 var(--f-mono);color:var(--faint)}
+.window .bar .dot{width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.window .bar .model{margin-left:auto;padding:5px 9px;border:1px solid var(--line);border-radius:999px}
+.msgs{padding:20px;display:flex;flex-direction:column;gap:14px;min-height:300px}
+.q{align-self:flex-end;background:var(--bg-2);border:1px solid var(--line);padding:10px 14px;border-radius:14px 14px 4px 14px;font-weight:600;max-width:85%}
+.a{display:flex;gap:12px;align-items:flex-start}
+.a .av{flex:none;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--mint),var(--violet));display:grid;place-items:center;font:800 12px/1 var(--f-display);color:var(--mint-ink)}
+.a p{color:var(--fg);min-width:0}
+.a p .cur{display:inline-block;width:7px;height:1em;background:var(--mint);vertical-align:-.12em;margin-left:2px;animation:blink 1s steps(1) infinite}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 20px 20px}
+.chip{font:600 13px/1 var(--f-body);padding:10px 14px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
+.chip:hover{color:var(--fg);border-color:var(--mint)}
+.chip[aria-pressed="true"]{background:color-mix(in srgb,var(--mint) 16%,transparent);border-color:var(--mint);color:var(--fg)}

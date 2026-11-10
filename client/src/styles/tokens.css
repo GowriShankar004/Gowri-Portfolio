@@ -1,0 +1,23 @@
+/* Design tokens. Dark-first "synapse" palette: ink navy ground, mint signal, coral spark, soft violet for the AI layer. */
+
+:root{
+  --bg:#080b16; --bg-2:#0e1324; --card:#121a30; --line:#232d4a; --line-2:#33406a;
+  --fg:#e9edf8; --muted:#9aa5c4; --faint:#6b769a;
+  --mint:#3ee6c4; --coral:#ff7a5c; --violet:#a78bfa;
+  --mint-ink:#062a24; --glow:rgba(62,230,196,.16);
+  --f-display:"Syne","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Manrope","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono","Cascadia Code",Consolas,monospace;
+  --r:14px; --max:1120px; --icon-inv:brightness(0) invert(.9);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f5f6fb; --bg-2:#eceff8; --card:#ffffff; --line:#dde2f0; --line-2:#c4cbe2;
+  --fg:#0d1326; --muted:#4a5577; --faint:#7a84a3;
+  --mint:#0b9e85; --coral:#e2502f; --violet:#6d4fd8;
+  --mint-ink:#ffffff; --glow:rgba(11,158,133,.12); --icon-inv:none; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f5f6fb; --bg-2:#eceff8; --card:#ffffff; --line:#dde2f0; --line-2:#c4cbe2;
+  --fg:#0d1326; --muted:#4a5577; --faint:#7a84a3;
+  --mint:#0b9e85; --coral:#e2502f; --violet:#6d4fd8;
+  --mint-ink:#ffffff; --glow:rgba(11,158,133,.12); --icon-inv:none; color-scheme:light}

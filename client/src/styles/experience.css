@@ -1,0 +1,22 @@
+/* timeline */
+.tl{position:relative;padding-left:34px}
+.tl::before,.tl .fill{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl .fill{background:linear-gradient(var(--mint),var(--violet),var(--coral));transform-origin:top;transform:scaleY(0);bottom:6px}
+.job{position:relative;padding-bottom:22px}
+.job::before{content:"";position:absolute;left:-31px;top:24px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--line-2);transition:all .4s}
+.job.lit::before{border-color:var(--mint);background:var(--mint);box-shadow:0 0 0 6px color-mix(in srgb,var(--mint) 18%,transparent)}
+.job .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;transition:border-color .3s,transform .3s}
+.job .card:hover{border-color:var(--line-2);transform:translateX(4px)}
+.job .top{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;align-items:baseline}
+.job h3{font-size:21px;font-weight:700;letter-spacing:-.01em}
+.job .co{color:var(--mint);font-weight:700}
+.job .when{font:500 13px/1.4 var(--f-mono);color:var(--faint);white-space:nowrap}
+.job ul{margin:12px 0 0;padding-left:18px;color:var(--muted)}
+.job li{margin-top:4px}
+.job .now{display:inline-flex;align-items:center;gap:6px;font:500 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mint-ink);background:var(--mint);padding:5px 8px;border-radius:6px;margin-left:8px;vertical-align:3px}
+
+/* experience type */
+.type{display:inline-block;font:500 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:6px;margin-left:8px;vertical-align:2px;
+  color:var(--muted);border:1px solid var(--line-2)}
+.type.ft{color:var(--mint);border-color:color-mix(in srgb,var(--mint) 60%,transparent);background:color-mix(in srgb,var(--mint) 12%,transparent)}
+.job.ft .card{border-color:color-mix(in srgb,var(--mint) 45%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--mint) 7%,var(--card)),var(--card) 55%)}

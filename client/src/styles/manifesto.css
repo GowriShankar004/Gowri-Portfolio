@@ -1,0 +1,11 @@
+/* manifesto: words light up as you scroll through it */
+.manifesto{padding-block:clamp(80px,14vw,160px) 20px}
+.mf{font:700 clamp(28px,4.4vw,58px)/1.16 var(--f-display);letter-spacing:-.025em;max-width:24ch;text-wrap:balance;margin:0}
+.mf .hl,.mf em{font-style:normal;background:linear-gradient(100deg,var(--mint),var(--violet) 55%,var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gsap .mf .mw{opacity:.13}
+.mf-sign{margin-top:28px;font:500 13px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+/* giant outlined section numbers that drift behind the headings */
+section.ghosted{position:relative;z-index:0}
+.ghost{position:absolute;right:0;top:30px;z-index:-1;pointer-events:none;font:800 clamp(130px,20vw,260px)/1 var(--f-display);letter-spacing:-.05em;
+  color:transparent;-webkit-text-stroke:1.5px var(--line-2);opacity:.7}

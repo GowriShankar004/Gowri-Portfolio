@@ -1,0 +1,32 @@
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px}
+.sk{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.sk h3{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sk h3 i{width:10px;height:10px;border-radius:3px}
+.sk .pills{display:flex;flex-wrap:wrap;gap:8px}
+.sk .pills span{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:7px 13px 7px 9px;border-radius:999px;border:1px solid var(--line);background:var(--bg-2);transition:border-color .2s,translate .2s}
+.sk .pills span:hover{border-color:var(--k,var(--mint));translate:0 -2px}
+.sk .pills img,.sk .gi{width:18px;height:18px;flex:none}
+.sk .gi{color:var(--k,var(--mint))}
+.sk .pills img.inv{filter:var(--icon-inv)}
+.sk .pills span:hover img,.sk .pills span:hover .gi{animation:wiggle .5s ease}
+@keyframes wiggle{30%{transform:rotate(-12deg) scale(1.15)}60%{transform:rotate(8deg) scale(1.1)}}
+
+/* roadmap */
+.road{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative;overflow:hidden}
+.road h3{font-size:22px;font-weight:700;margin-bottom:6px}
+.road>p{color:var(--muted);margin-bottom:22px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative}
+@media (max-width:760px){.steps{grid-template-columns:minmax(0,1fr)}}
+.step{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--bg-2);position:relative}
+.step .s{font:500 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.step .s::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.step.done .s{color:var(--mint)} .step.now .s{color:var(--violet)} .step.next .s{color:var(--faint)} .step.goal .s{color:var(--coral)}
+.step.now{border-color:color-mix(in srgb,var(--violet) 55%,var(--line))}
+.step.goal{border-style:dashed;border-color:color-mix(in srgb,var(--coral) 55%,var(--line))}
+.step b{display:block;font-family:var(--f-display);font-size:17px;margin-bottom:4px}
+.step p{font-size:14px;color:var(--muted)}
+
+/* roadmap rail */
+.rline{position:absolute;left:0;right:0;top:-14px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--mint),var(--violet),var(--coral));transform-origin:left}
+@media (max-width:760px){.rline{display:none}}

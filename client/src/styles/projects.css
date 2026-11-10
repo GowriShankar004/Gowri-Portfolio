@@ -1,0 +1,86 @@
+/* projects */
+.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.proj{grid-column:span 2;position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px;
+  transition:border-color .3s;overflow:hidden;min-width:0}
+.proj.feature{grid-column:span 4;grid-row:span 2}
+.proj.wide{grid-column:span 3}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}.proj,.proj.feature,.proj.wide{grid-column:auto;grid-row:auto}}
+.proj::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--mint) 14%,transparent),transparent 60%)}
+.proj:hover{border-color:var(--line-2)}
+.proj:hover::after{opacity:1}
+.proj .kind{font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.proj h3{font-size:24px;font-weight:700;letter-spacing:-.02em}
+.proj.feature h3{font-size:clamp(28px,3.4vw,38px)}
+.proj p{color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.tags span{font:500 12px/1 var(--f-mono);padding:6px 9px;border-radius:7px;background:var(--bg-2);border:1px solid var(--line);color:var(--muted)}
+.proj .go{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:all .3s;color:var(--fg)}
+.proj .go svg{width:16px;height:16px}
+.proj:hover .go{background:var(--mint);border-color:var(--mint);color:var(--mint-ink);transform:rotate(-45deg)}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px;font:500 12px/1 var(--f-mono)}
+.flow span{padding:8px 10px;border-radius:8px;border:1px dashed var(--line-2);color:var(--fg);background:var(--bg-2)}
+.flow i{width:22px;height:2px;background:var(--line-2);position:relative;overflow:hidden}
+.flow i::after{content:"";position:absolute;inset:0;width:40%;background:var(--mint);animation:flowdot 1.6s linear infinite}
+@keyframes flowdot{from{transform:translateX(-100%)}to{transform:translateX(260%)}}
+.accent-coral .kind{color:var(--coral)}
+.accent-violet .kind{color:var(--violet)}
+.accent-mint .kind{color:var(--mint)}
+
+/* project polish */
+.proj{text-decoration:none;color:inherit}
+.proj h3,.proj p{text-decoration:none}
+.proj::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--mint),var(--violet),var(--coral));
+  transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.proj:hover::before,.proj:focus-visible::before{transform:scaleX(1)}
+.proj:hover h3{color:var(--mint)}
+.proj h3{transition:color .25s}
+.log{margin:4px 0 0;padding:14px 16px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font:500 12.5px/1.75 var(--f-mono);color:var(--muted);overflow-x:auto;white-space:pre}
+.log .l{display:block}
+.log b{font-weight:500}
+.log .p,.log .m{color:var(--violet)} .log .ok{color:var(--mint)}
+.js .proj.in .log .l{animation:logline .5s both}
+.js .proj.in .log .l:nth-child(2){animation-delay:.5s} .js .proj.in .log .l:nth-child(3){animation-delay:1s}
+.js .proj.in .log .l:nth-child(4){animation-delay:1.5s} .js .proj.in .log .l:nth-child(5){animation-delay:2s}
+@keyframes logline{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+
+/* projects as a pinned horizontal gallery (large screens; JS adds .hs) */
+.hs{margin-inline:calc(50% - 50vw);padding:96px max(24px,calc(50vw - 560px)) 40px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.hs .grid{display:flex;gap:20px;width:max-content;align-items:stretch;will-change:transform}
+.hs .grid>.proj{flex:none;width:420px;grid-column:auto;grid-row:auto}
+.hs .grid>.proj.feature{width:640px}
+.hs .grid>.sec-head{flex:none;width:400px;margin:0 20px 0 0;align-self:center}
+.hbar{display:flex;align-items:center;gap:16px;margin-top:30px;font:500 12px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.hbar i{flex:1;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--mint),var(--violet),var(--coral));transform-origin:left;transform:scaleX(0);box-shadow:0 0 0 1px var(--line)}
+
+/* freelance client card: text beside a phone-shaped preview of the live site */
+.proj.client{grid-column:span 6;order:9;display:grid;grid-template-columns:minmax(0,1fr) 170px;gap:22px;align-items:stretch}
+.hs .grid>.proj.client{order:0;width:700px}
+.proj.client .txt{display:flex;flex-direction:column;gap:12px;min-width:0}
+.proj.client .kind{color:var(--coral)}
+.clientbadge{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font:500 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;
+  padding:6px 9px;border-radius:6px;color:var(--coral);border:1px solid color-mix(in srgb,var(--coral) 55%,transparent);background:color-mix(in srgb,var(--coral) 10%,transparent)}
+.phone{position:relative;border-radius:22px;padding:6px;background:var(--bg);border:1px solid var(--line-2);align-self:center;width:170px;aspect-ratio:9/18.5;max-width:100%}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:50% 0;border-radius:16px;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.phone::before{content:"";position:absolute;top:11px;left:50%;width:44px;height:5px;border-radius:5px;background:var(--line-2);transform:translateX(-50%);z-index:1}
+.proj.client:hover .phone img{transform:scale(1.04)}
+.links2{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.links2 a{font:700 13px/1 var(--f-body);padding:10px 14px;border-radius:999px;border:1px solid var(--line-2);text-decoration:none;color:var(--fg);display:inline-flex;align-items:center;gap:8px;transition:border-color .2s,background .2s}
+.links2 a:hover{border-color:var(--coral)}
+.links2 a.live{background:var(--coral);border-color:var(--coral);color:var(--bg)}
+.links2 svg{width:14px;height:14px}
+@media (max-width:560px){.proj.client{grid-template-columns:minmax(0,1fr)}.phone{width:150px;justify-self:center}}
+
+/* outlined word that slides the other way behind the projects gallery */
+.hs{position:relative;z-index:0}
+.bigword{position:absolute;left:0;top:50%;z-index:-1;pointer-events:none;white-space:nowrap;font:800 clamp(150px,19vw,290px)/1 var(--f-display);
+  letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px var(--line)}
+
+/* the section heading sits inside the track so the pinned gallery can slide it along with the cards */
+.grid>.sec-head{grid-column:1/-1}
+.bigword,.hbar{display:none}
+.hs .bigword{display:block}
+.hs .hbar{display:flex}
+
+/* the client card spans the 6-column desktop grid; on the single-column phone grid it must not, or it creates 6 implicit columns */
+@media (max-width:900px){.proj.client{grid-column:auto}}

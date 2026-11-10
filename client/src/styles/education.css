@@ -1,0 +1,8 @@
+/* education */
+.edu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.edu{grid-template-columns:minmax(0,1fr)}}
+.ed{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:6px}
+.ed .yr{font:500 13px/1 var(--f-mono);color:var(--mint);margin-bottom:8px}
+.ed h3{font-size:20px;font-weight:700}
+.ed p{color:var(--muted);font-size:15px}
+.ed .deg{color:var(--fg);font-weight:600}

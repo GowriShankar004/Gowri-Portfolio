@@ -1,0 +1,29 @@
+<section id="about" class="ghosted">
+  <span class="ghost" aria-hidden="true">01</span>
+  <div class="rv" [appSectionHead]="head"></div>
+  <div class="chat">
+    <div class="stats">
+      @for (stat of stats; track stat.label) {
+        <div class="stat rv">
+          <div class="n"><span [appCountUp]="stat.value">{{ stat.value }}</span></div>
+          <div class="l">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+    <div class="window rv">
+      <div class="bar"><span class="dot"></span>ask-gowri<span class="model">gowri-v2026</span></div>
+      <div class="msgs">
+        <div class="q">{{ current().question }}</div>
+        <div class="a">
+          <div class="av">GS</div>
+          <p aria-live="polite">{{ shown() }}@if (streaming()) {<span class="cur"></span>}</p>
+        </div>
+      </div>
+      <div class="chips" role="group" aria-label="Questions">
+        @for (q of questions; track q.key) {
+          <button class="chip" type="button" [attr.aria-pressed]="current().key === q.key" (click)="ask(q)">{{ q.question }}</button>
+        }
+      </div>
+    </div>
+  </div>
+</section>

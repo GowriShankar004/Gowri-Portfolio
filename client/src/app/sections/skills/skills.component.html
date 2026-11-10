@@ -1,0 +1,37 @@
+<section id="skills" class="ghosted">
+  <span class="ghost" aria-hidden="true">04</span>
+  <div class="rv" [appSectionHead]="head"></div>
+  <div class="skills">
+    @for (g of groups; track g.name) {
+      <div class="sk rv" [style.--k]="g.color">
+        <h3><i [style.background]="swatch(g.name, g.color)"></i>{{ g.name }}</h3>
+        <div class="pills">
+          @for (s of g.skills; track s.name) {
+            <span>
+              @if (s.logo) {
+                <img [src]="'icons/' + s.logo + '.svg'" alt="" width="18" height="18" [class.inv]="s.invertInDark" />
+              } @else if (s.glyph) {
+                <app-icon [name]="s.glyph" svgClass="gi" [stroke]="2" />
+              }
+              {{ s.name }}
+            </span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+  <div class="road rv">
+    <h3>Roadmap to AI developer</h3>
+    <p>Where I am on the path, and where I'm heading next.</p>
+    <div class="steps">
+      <i class="rline" aria-hidden="true"></i>
+      @for (step of roadmap; track step.state) {
+        <div class="step" [class]="step.state">
+          <div class="s">{{ step.label }}</div>
+          <b>{{ step.title }}</b>
+          <p>{{ step.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+/* Global stylesheet: tokens first, then base, then one partial per page section. */
+@import "./styles/tokens.css";
+@import "./styles/base.css";
+@import "./styles/nav.css";
+@import "./styles/hero.css";
+@import "./styles/marquee.css";
+@import "./styles/manifesto.css";
+@import "./styles/about.css";
+@import "./styles/experience.css";
+@import "./styles/projects.css";
+@import "./styles/skills.css";
+@import "./styles/education.css";
+@import "./styles/contact.css";
+@import "./styles/overlays.css";

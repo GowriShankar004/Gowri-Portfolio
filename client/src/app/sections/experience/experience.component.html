@@ -1,0 +1,25 @@
+<section id="work" class="ghosted">
+  <span class="ghost" aria-hidden="true">02</span>
+  <div class="rv" [appSectionHead]="head"></div>
+  <div class="tl">
+    <div class="fill"></div>
+    @for (job of jobs; track job.title + job.start) {
+      <article class="job rv" [class.ft]="job.type === 'Full-time'">
+        <div class="card">
+          <div class="top">
+            <h3>{{ job.title }}@if (job.current) {<span class="now">Now</span>}</h3>
+            <span class="when">{{ job.start }} – {{ job.end }}</span>
+          </div>
+          <div class="co">
+            {{ job.company }}{{ job.location ? ' · ' + job.location : '' }}<span class="type" [class.ft]="job.type === 'Full-time'">{{ job.type }}</span>
+          </div>
+          <ul>
+            @for (point of job.highlights; track point) {
+              <li>{{ point }}</li>
+            }
+          </ul>
+        </div>
+      </article>
+    }
+  </div>
+</section>

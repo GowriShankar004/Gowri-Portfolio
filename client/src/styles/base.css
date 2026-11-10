@@ -1,0 +1,58 @@
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:16px/1.65 var(--f-body);overflow-x:hidden;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.08}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto}
+.mono{font-family:var(--f-mono)}
+.eyebrow{font:500 12px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mint);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:6px}
+
+/* progress + cursor glow */
+#progress{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--mint),var(--violet),var(--coral));z-index:70}
+#glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;left:0;top:0;
+  background:radial-gradient(circle,var(--glow),transparent 65%);transform:translate(-50%,-50%);opacity:0;transition:opacity .4s}
+
+/* sections */
+section{padding-block:84px 0;scroll-margin-top:70px}
+.sec-head{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;max-width:720px}
+.sec-head h2{font-size:clamp(32px,4.6vw,54px);font-weight:800;letter-spacing:-.03em}
+.sec-head p{color:var(--muted);font-size:17px}
+
+/* smooth scrolling (Lenis) */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* eyebrow rules draw in */
+.gsap .eyebrow::before{width:0;transition:width .9s cubic-bezier(.2,.8,.2,1) .1s}
+.gsap .in .eyebrow::before,.gsap .in.eyebrow::before{width:22px}
+
+/* headings rise in word by word */
+.gsap .sec-head h2 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.1em;margin-bottom:-.1em}
+.gsap .sec-head h2 .w>span{display:inline-block;transform:translateY(110%) rotate(4deg);transform-origin:0 100%;transition:transform 1s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
+.gsap .sec-head.in h2 .w>span{transform:none}
+
+/* ambient light that drifts and changes colour as you scroll */
+#amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+#amb i{position:absolute;width:55vmax;height:55vmax;border-radius:50%;filter:blur(100px);opacity:.16;will-change:transform,opacity}
+#amb .b1{background:var(--mint);left:-22vmax;top:-12vmax}
+#amb .b2{background:var(--violet);right:-26vmax;top:25vh}
+#amb .b3{background:var(--coral);left:10vw;bottom:-40vmax;opacity:0}
+main{position:relative;z-index:1}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* Angular host elements are layout-neutral; app-root is the page body's only block */
+app-root{display:block}
+
+/* Cards waiting to slide in sit off to the right; clip (unlike hidden) stops sideways panning without breaking the sticky nav */
+html,body{overflow-x:clip}

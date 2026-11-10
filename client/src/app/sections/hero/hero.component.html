@@ -1,0 +1,26 @@
+<header class="hero">
+  <div>
+    <span class="status"><i></i><b>{{ profile.role }}</b> &#64; {{ profile.company }} · {{ profile.location }}</span>
+    <h1>
+      <span class="split"><span>{{ profile.firstName }}</span></span>{{ ' ' }}<span class="split"><span class="grad">{{ profile.lastName }}</span></span>
+    </h1>
+    <p class="typed" aria-live="polite"><span><b>{{ verb() }}</b> {{ typed() }}</span><span class="caret" aria-hidden="true"></span></p>
+    <p class="lede">{{ profile.lede }}</p>
+    <div class="cta">
+      <a class="btn primary mag" appMagnetic href="#projects" (click)="go($event, 'projects')">See my work <app-icon name="arrow-right" /></a>
+      <a class="btn mag" appMagnetic href="#contact" (click)="go($event, 'contact')">Let's talk</a>
+      <a class="btn mag" appMagnetic [href]="profile.github" target="_blank" rel="noopener" aria-label="GitHub profile"><app-icon name="github" />GitHub</a>
+    </div>
+  </div>
+  <figure class="me" id="me" style="margin:0">
+    <div class="frame">
+      <div class="pic">
+        <img ngSrc="images/gowri-shankar.webp" width="1493" height="2000" priority alt="Portrait of Gowri Shankar Duvvu" />
+      </div>
+    </div>
+    @for (chip of chips; track chip.text) {
+      <span [class]="chip.cls" [attr.data-depth]="chip.depth">{{ chip.text }}</span>
+    }
+    <span class="badge"><i></i>AI Developer <small>in training</small></span>
+  </figure>
+</header>

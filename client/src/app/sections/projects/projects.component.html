@@ -1,0 +1,50 @@
+<section id="projects">
+  <div class="bigword" aria-hidden="true">Selected work · Selected work ·</div>
+  <div class="grid">
+    <div class="rv" [appSectionHead]="head"></div>
+
+    @for (p of projects; track p.name) {
+      @if (p.size === 'client') {
+        <article class="proj client rv" appSpotlight>
+          <div class="txt">
+            <span class="clientbadge">{{ p.kind }}</span>
+            <h3>{{ p.name }}</h3>
+            <p>{{ p.summary }}</p>
+            <div class="tags">@for (t of p.tags; track t) {<span>{{ t }}</span>}</div>
+            <div class="links2">
+              @for (l of p.links; track l.url) {
+                <a [class.live]="l.primary" [href]="l.url" target="_blank" rel="noopener">{{ l.label }}@if (l.primary) {<app-icon name="external" />}</a>
+              }
+            </div>
+          </div>
+          @if (p.image; as img) {
+            <div class="phone"><img [ngSrc]="img.src" [width]="img.width" [height]="img.height" [alt]="img.alt" /></div>
+          }
+        </article>
+      } @else {
+        <a class="proj rv" [class]="'accent-' + p.accent" [class.feature]="p.size === 'feature'" [class.wide]="p.size === 'wide'"
+           [href]="p.url" target="_blank" rel="noopener" appSpotlight>
+          <span class="go"><app-icon name="arrow-right" /></span>
+          <span class="kind">{{ p.kind }}</span>
+          <h3>{{ p.name }}</h3>
+          <p>{{ p.summary }}</p>
+          @if (p.flow) {
+            <div class="flow" [attr.aria-label]="'Agent flow: ' + p.flow.join(', ')">
+              @for (step of p.flow; track step; let last = $last) {
+                <span>{{ step }}</span>@if (!last) {<i></i>}
+              }
+            </div>
+          }
+          @if (p.log) {
+            <pre class="log" aria-label="Example agent run">@for (line of p.log; track $index) {<span class="l">@switch (line.kind) {@case ('prompt') {<b class="p">$</b> <span>{{ line.text }}</span>}@case ('step') {<b class="m">→</b> <span>{{ line.text }}</span> <b class="ok">✓</b>}@case ('done') {<b class="ok">{{ line.text }}</b>}}</span>}</pre>
+          }
+          @if (p.details) {
+            <p>{{ p.details }}</p>
+          }
+          <div class="tags">@for (t of p.tags; track t) {<span>{{ t }}</span>}</div>
+        </a>
+      }
+    }
+  </div>
+  <div class="hbar" aria-hidden="true"><i></i><span>Scroll to explore</span></div>
+</section>
