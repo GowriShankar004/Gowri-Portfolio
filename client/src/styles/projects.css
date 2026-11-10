@@ -35,7 +35,7 @@
 .proj:hover::before,.proj:focus-visible::before{transform:scaleX(1)}
 .proj:hover h3{color:var(--mint)}
 .proj h3{transition:color .25s}
-.log{margin:4px 0 0;padding:14px 16px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font:500 12.5px/1.75 var(--f-mono);color:var(--muted);overflow-x:auto;white-space:pre}
+.log{margin:4px 0 0;padding:14px 16px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font:500 12.5px/1.75 var(--f-mono);color:var(--muted);overflow:hidden;white-space:pre-wrap;overflow-wrap:anywhere}
 .log .l{display:block}
 .log b{font-weight:500}
 .log .p,.log .m{color:var(--violet)} .log .ok{color:var(--mint)}
@@ -45,8 +45,8 @@
 @keyframes logline{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 
 /* projects as a pinned horizontal gallery (large screens; JS adds .hs) */
-.hs{margin-inline:calc(50% - 50vw);padding:96px max(24px,calc(50vw - 560px)) 40px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.hs .grid{display:flex;gap:20px;width:max-content;align-items:stretch;will-change:transform}
+.hs{margin-inline:calc(50% - 50vw);padding:96px max(24px,calc(50vw - 560px)) 40px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;width:100vw!important;max-width:100vw!important}
+.hs .grid{display:flex;gap:20px;width:max-content;align-items:center;will-change:transform}
 .hs .grid>.proj{flex:none;width:420px;grid-column:auto;grid-row:auto}
 .hs .grid>.proj.feature{width:640px}
 .hs .grid>.sec-head{flex:none;width:400px;margin:0 20px 0 0;align-self:center}

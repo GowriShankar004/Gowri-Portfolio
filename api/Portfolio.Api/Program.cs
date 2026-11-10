@@ -47,11 +47,20 @@ if (smtpSection.Get<SmtpOptions>()?.IsConfigured == true)
 else
     builder.Services.AddSingleton<IEmailSender, LoggingEmailSender>();
 
+// Behind a host proxy (Render, Azure, Fly...) the real visitor IP arrives in X-Forwarded-For; without this every visitor shares one rate-limit bucket.
+builder.Services.Configure<Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>(o =>
+{
+    o.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto;
+    o.KnownIPNetworks.Clear();
+    o.KnownProxies.Clear();
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 
+app.UseForwardedHeaders();
 app.UseExceptionHandler();
 app.UseStatusCodePages();
 app.UseCors();
