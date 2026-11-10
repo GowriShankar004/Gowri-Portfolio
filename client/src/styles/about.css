@@ -20,3 +20,16 @@
 .chip{font:600 13px/1 var(--f-body);padding:10px 14px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
 .chip:hover{color:var(--fg);border-color:var(--mint)}
 .chip[aria-pressed="true"]{background:color-mix(in srgb,var(--mint) 16%,transparent);border-color:var(--mint);color:var(--fg)}
+
+/* live AI chat (shown only when the API is configured) */
+.window .bar .live-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;font:500 11px/1 var(--f-mono);
+  color:var(--mint);border:1px solid color-mix(in srgb,var(--mint) 55%,transparent);background:color-mix(in srgb,var(--mint) 10%,transparent)}
+.window .bar .live-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mint);animation:ping 2s infinite}
+.chat-error{color:var(--coral);font-size:14px;padding-left:42px}
+.ask{display:flex;gap:8px;padding:0 20px 8px}
+.ask input{flex:1;min-width:0;font:500 15px/1.2 var(--f-body);color:var(--fg);background:var(--bg-2);border:1px solid var(--line-2);border-radius:999px;padding:12px 16px}
+.ask input::placeholder{color:var(--faint)}
+.ask input:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+.ask .btn{padding:12px 20px}
+.ask .btn:disabled,.ask input:disabled{opacity:.6;cursor:progress}
+.ask-note{padding:0 20px 18px 36px;font:500 11px/1.4 var(--f-mono);color:var(--faint)}

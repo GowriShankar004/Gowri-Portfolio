@@ -2,12 +2,12 @@
 
 Personal portfolio of **Gowri Shankar Duvvu**, Software Engineer at datanitiv (.NET, Angular, SQL), on the path to AI development.
 
-The site is built in the same stack it describes: an **Angular** frontend now, and a **.NET** Web API next.
+The site is built in the same stack it describes: an **Angular** frontend and a **.NET** Web API.
 
 | Folder | What it is | Status |
 |---|---|---|
 | [`client/`](client) | Angular 22 single-page site, prerendered to static HTML | ✅ Phase 1 |
-| `api/` | .NET 10 Web API: contact form (MailKit) and an AI "Ask Gowri" chat | 🔜 Phase 2 |
+| [`api/`](api) | .NET 10 Web API: contact form (MailKit) and an AI "Ask Gowri" chat (Claude) | ✅ Phase 2 |
 
 ## Tech stack
 
@@ -18,6 +18,9 @@ The site is built in the same stack it describes: an **Angular** frontend now, a
 - **Lenis**: smooth scrolling
 - **Vitest** unit tests, **angular-eslint** linting
 - Hand-written CSS design tokens with light and dark themes; no UI framework
+- **.NET 10 API** ([details](api/README.md)): minimal APIs, server-sent events, Claude via the Anthropic C# SDK, MailKit, rate limiting, xUnit integration tests
+
+The live chat and the contact form only appear when the API reports them as configured, so the static site works on its own.
 
 ## Run it
 
@@ -29,6 +32,10 @@ npm run build      # static site in client/dist/client/browser
 npm test           # unit tests
 npm run lint
 npm run typecheck
+
+cd ../api
+dotnet run --project Portfolio.Api   # API on http://localhost:5080 (see api/README.md for the API key)
+dotnet test
 ```
 
 ## How the client is organised
@@ -69,5 +76,6 @@ The build is plain static files, so any static host works:
 ## Roadmap
 
 - [x] Phase 1: Angular frontend with full motion design
-- [ ] Phase 2: .NET 10 Web API with a working contact form (MailKit/SMTP) and an AI-powered "Ask Gowri" chat
+- [x] Phase 2: .NET 10 Web API with a working contact form (MailKit/SMTP) and an AI-powered "Ask Gowri" chat
+- [ ] Deploy the site and the API
 - [ ] Certifications and achievements sections

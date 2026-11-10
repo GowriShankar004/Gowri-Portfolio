@@ -1,0 +1,54 @@
+<section class="contact rv" id="contact">
+  <span class="eyebrow">Contact</span>
+  <h2 style="margin-top:16px" aria-label="Let's build something intelligent.">
+    @for (w of heading; track $index; let last = $last) {
+      <span class="w" aria-hidden="true"><span [class.grad]="w.grad">{{ w.text }}</span></span>{{ last ? '' : ' ' }}
+    }
+  </h2>
+  <p>Open to collaborating on full-stack and AI projects, and to conversations about opportunities. Drop me a line.</p>
+
+  @if (api.contactAvailable()) {
+    @if (state() === 'sent') {
+      <div class="sent" role="status">
+        <b>Message sent.</b> Thanks for reaching out. I'll reply to the email you gave.
+        <button class="btn" type="button" (click)="state.set('idle')">Send another</button>
+      </div>
+    } @else {
+      <form class="cform" [formGroup]="form" (ngSubmit)="send()" novalidate>
+        <div class="row">
+          <label>
+            <span>Name</span>
+            <input formControlName="name" autocomplete="name" placeholder="Asha Rao" [attr.aria-invalid]="!!fieldError('name')" />
+            @if (fieldError('name'); as err) { <small class="err">{{ err }}</small> }
+          </label>
+          <label>
+            <span>Email</span>
+            <input formControlName="email" type="email" autocomplete="email" placeholder="asha@company.com" [attr.aria-invalid]="!!fieldError('email')" />
+            @if (fieldError('email'); as err) { <small class="err">{{ err }}</small> }
+          </label>
+        </div>
+        <label>
+          <span>Message</span>
+          <textarea formControlName="message" rows="4" placeholder="Hi Gowri, we're hiring an Angular and .NET developer…" [attr.aria-invalid]="!!fieldError('message')"></textarea>
+          @if (fieldError('message'); as err) { <small class="err">{{ err }}</small> }
+        </label>
+        <!-- Honeypot: hidden from people, filled in only by bots -->
+        <label class="hp" aria-hidden="true">Website <input formControlName="website" tabindex="-1" autocomplete="off" /></label>
+        <div class="actions">
+          <button class="btn primary" type="submit" [disabled]="state() === 'sending'">{{ state() === 'sending' ? 'Sending…' : 'Send message' }}</button>
+          @if (serverError()) { <span class="err" role="alert">{{ serverError() }}</span> }
+        </div>
+      </form>
+    }
+    <p class="or">Prefer email?</p>
+  }
+
+  <div class="mail">
+    <code #email>{{ profile.email }}</code>
+    <button class="btn" [class.primary]="!api.contactAvailable()" type="button" (click)="copy(email)">Copy email</button>
+  </div>
+  <div class="socials">
+    <a class="btn mag" appMagnetic [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn mag" appMagnetic [href]="profile.github" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</section>

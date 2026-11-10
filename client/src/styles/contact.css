@@ -13,3 +13,23 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;paddin
 .gsap .contact h2 .w>span{display:inline-block}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--fg);color:var(--bg);font:600 14px/1 var(--f-body);padding:12px 18px;border-radius:999px;transition:all .3s;z-index:80;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* contact form (shown only when the API can deliver email) */
+.cform{display:grid;gap:14px;margin-top:28px;max-width:640px}
+.cform .row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:620px){.cform .row{grid-template-columns:minmax(0,1fr)}}
+.cform label{display:grid;gap:6px;min-width:0}
+.cform label>span{font:500 12px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.cform input,.cform textarea{font:500 15px/1.5 var(--f-body);color:var(--fg);background:var(--bg);border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;resize:vertical;min-width:0}
+.cform input::placeholder,.cform textarea::placeholder{color:var(--faint)}
+.cform input:focus-visible,.cform textarea:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+.cform [aria-invalid="true"]{border-color:var(--coral)}
+.cform .err,.contact .err{color:var(--coral);font-size:13px}
+.cform .actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cform .btn:disabled{opacity:.6;cursor:progress}
+.cform .hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.contact .sent{margin-top:28px;max-width:640px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;
+  border:1px solid color-mix(in srgb,var(--mint) 55%,transparent);background:color-mix(in srgb,var(--mint) 10%,transparent)}
+.contact .sent b{color:var(--mint)}
+.contact .or{margin-top:26px;font:500 12px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.contact .or+.mail{margin-top:12px}
